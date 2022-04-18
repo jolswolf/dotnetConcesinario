@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ConcesionarioMVC.Models.Taller>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_entrada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_salida)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.coste)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            @Html.ActionLink(item.ID.ToString(), "ListadoTalleresEnlazado", "Coche", new { id = item.ID }, null)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_entrada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_salida)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.coste)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,60 @@
+﻿@model ConcesionarioMVC.Models.Taller
+
+@{
+    ViewBag.Title = "ListadoTalleresEnlazado";
+}
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<h2>
+    @Model.ID
+</h2>
+<h5>
+    @Model.fecha_entrada , @Model.fecha_salida, @Model.coste
+</h5>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Coche")
+        </th>
+        <th>
+            @Html.DisplayName("Marca")
+        </th>
+        <th>
+            @Html.DisplayName("Piezas")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.coche) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.matricula)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.marca.nomMarca)
+        </td>
+        <td>
+            <table>
+                @foreach (var pieza in item.piezasCoche)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => pieza.pieza.modelo)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
